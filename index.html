@@ -1,158 +1,102 @@
 <!DOCTYPE html>
 <html>
-    <meta
-        property="og:image"
-        content="https://user-images.githubusercontent.com/56578913/86508694-1bebf900-be1d-11ea-89f6-31f1330ee983.jpg"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="우리가족 제주도여행 ✈" />
-    <meta property="og:description" content="이번 제주도 여행은 과연 어디로 갈까요?" />
-    <meta property="og:url" content="https://urechanger.github.io/family-travel" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <head>
+        <meta
+            property="og:image"
+            content="https://user-images.githubusercontent.com/56578913/86508694-1bebf900-be1d-11ea-89f6-31f1330ee983.jpg"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="우리가족 제주도여행 ✈" />
+        <meta property="og:description" content="이번 제주도 여행은 과연 어디로 갈까요?" />
+        <meta property="og:url" content="https://urechanger.github.io/family-travel" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="utf-8" />
         <title>우리가족 제주도여행 ✈</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div
-            style="
-                width: 100%;
-                height: 75px;
-                text-align: center;
-                vertical-align: middle;
-                background: #0f9934;
-            "
-        >
-            <h1 style="color: white; margin: 0% auto; vertical-align: middle; padding: 10px;">
-                2020 힐링 집행LT 시즌 2
-            </h1>
-        </div>
-        <div id="map" style="width: 100%; height: 90vh;"></div>
-
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
         <script
             type="text/javascript"
-            src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=85279c0575c3a5623d7f9428d3e57118"
+            src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=165b439153d2f7fcbf6c1471d0104a11"
         ></script>
+    </head>
+    <body>
+        <div id="map" style="width: 100%; height: 100%;"></div>
+        <!--    Made by Erik Terwan    -->
+        <!--   24th of November 2015   -->
+        <!--        MIT License        -->
+        <div class="container_nav">
+            <div class="title">
+                17년 만의 제주도여행🛫
+            </div>
+        </div>
+        <nav class="nav" role="navigation">
+            <div id="menuToggle">
+                <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+                <input type="checkbox" />
+
+                <!--
+    Some spans to act as a hamburger.
+    
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <!--
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+                <ul id="menu">
+                    <a href="#">
+                        <li>Home</li>
+                    </a>
+                    <a href="#">
+                        <li>About</li>
+                    </a>
+                    <a href="#">
+                        <li>Info</li>
+                    </a>
+                    <a href="#">
+                        <li>Contact</li>
+                    </a>
+                    <a href="https://erikterwan.com/" target="_blank">
+                        <li>Show me more</li>
+                    </a>
+                </ul>
+            </div>
+        </nav>
         <script>
             var mapContainer = document.getElementById('map'), // 지도의 중심좌표
                 mapOption = {
-                    center: new kakao.maps.LatLng(37.461291, 127.302608), // 지도의 중심좌표
-                    level: 10, // 지도의 확대 레벨
+                    center: new kakao.maps.LatLng(33.37702294346986, 126.53592674725587), // 지도의 중심좌표
+                    level: 11, // 지도의 확대 레벨
                 };
 
             var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+        </script>
+        <script>
+            var imageSrc =
+                    'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다
+                imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+                imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-            var positions = [
-                {
-                    title: '글램핑클럽레스피아',
-                    latlng: new kakao.maps.LatLng(37.684799, 127.728027),
-                },
-                {
-                    title: '와이글램핑',
-                    latlng: new kakao.maps.LatLng(37.527073, 127.626214),
-                },
-                {
-                    title: '양지파인글램핑',
-                    latlng: new kakao.maps.LatLng(37.212267, 127.298358),
-                },
-                {
-                    title: '힐포인트',
-                    latlng: new kakao.maps.LatLng(37.3515, 127.052789),
-                },
-            ];
+            // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+                markerPosition = new kakao.maps.LatLng(33.37702294346986, 126.53592674725587); // 마커가 표시될 위치입니다
 
-            var content1 =
-                '<div class="wrap">' +
-                '    <div class="info">' +
-                '        <div class="title">' +
-                '            글램핑클럽레스피아-홍천' +
-                '        </div>' +
-                '        <div class="body">' +
-                '            <div class="img">' +
-                '                <img src="pics/1.png" width="73" height="70">' +
-                '           </div>' +
-                '            <div class="desc">' +
-                '                <div class="ellipsis">길현픽 4순위(168,000₩ + 30,000₩)</div>' +
-                '                <div class="jibun ellipsis">강원도 홍천군 북방면</div>' +
-                '                <div><a href="http://lespia.co.kr/fhtml/?intro=OK" target="_blank" class="link">다들</a></div>' +
-                '            </div>' +
-                '        </div>' +
-                '    </div>' +
-                '</div>';
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                position: markerPosition,
+                image: markerImage, // 마커이미지 설정
+            });
 
-            var content2 =
-                '<div class="wrap">' +
-                '    <div class="info">' +
-                '        <div class="title">' +
-                '            와이글램핑-양평' +
-                '        </div>' +
-                '        <div class="body">' +
-                '            <div class="img">' +
-                '                <img src="pics/2.png" width="73" height="70">' +
-                '           </div>' +
-                '            <div class="desc">' +
-                '                <div class="ellipsis">길현픽 3순위(199,000₩ + 10,000₩)</div>' +
-                '                <div class="jibun ellipsis">경기도 양평군 용문면</div>' +
-                '                <div><a href="http://www.whyc.co.kr/default/preview/rooms1.php" target="_blank" class="link">가긴</a></div>' +
-                '            </div>' +
-                '        </div>' +
-                '    </div>' +
-                '</div>';
-
-            var content3 =
-                '<div class="wrap">' +
-                '    <div class="info">' +
-                '        <div class="title">' +
-                '            양지파인글램핑-용인' +
-                '        </div>' +
-                '        <div class="body">' +
-                '            <div class="img">' +
-                '                <img src="pics/3.png" width="73" height="70">' +
-                '           </div>' +
-                '            <div class="desc">' +
-                '                <div class="ellipsis">길현픽 1순위(212,000₩ + 10,000₩)</div>' +
-                '                <div class="jibun ellipsis">경기도 용인시 처인구</div>' +
-                '                <div><a href="https://www.ddnayo.com/RsvSys/Select.aspx?id_hotel=4061&id_room=47336&dt_s=2020-07-07" target="_blank" class="link">  ༼◉_◉ ༽  </a></div>' +
-                '            </div>' +
-                '        </div>' +
-                '    </div>' +
-                '</div>';
-
-            var content4 =
-                '<div class="wrap">' +
-                '    <div class="info">' +
-                '        <div class="title">' +
-                '            힐포인트-용인' +
-                '        </div>' +
-                '        <div class="body">' +
-                '            <div class="img">' +
-                '                <img src="pics/4.png" width="73" height="70">' +
-                '           </div>' +
-                '            <div class="desc">' +
-                '                <div class="ellipsis">길현픽 2순위(200,000₩ + 10,000₩)</div>' +
-                '                <div class="jibun ellipsis">경기 용인시 수지구</div>' +
-                '                <div><a href="http://healpoint.co.kr/" target="_blank" class="link"> 할거지? </a></div>' +
-                '            </div>' +
-                '        </div>' +
-                '    </div>' +
-                '</div>';
-
-            var contents = [content1, content2, content3, content4];
-
-            for (var i = 0; i < positions.length; ++i) {
-                // 지도에 마커를 표시합니다
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: positions[i].latlng,
-                });
-
-                var overlay = new kakao.maps.CustomOverlay({
-                    content: contents[i],
-                    map: map,
-                    position: marker.getPosition(),
-                });
-            }
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
         </script>
     </body>
 </html>

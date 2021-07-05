@@ -1,92 +1,151 @@
-.wrap {
+html {
+    height: 100%;
+}
+body {
+    margin: 0px;
+    height: 100%;
+    font-family: 'NanumSquare', sans-serif;
+}
+
+.container_nav {
     position: absolute;
-    left: 0;
-    bottom: 40px;
-    width: 288px;
-    height: 132px;
-    margin-left: -144px;
-    text-align: left;
-    overflow: hidden;
-    font-size: 12px;
-    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-    line-height: 1.5;
+    top: 0px;
+    left: 0px;
+    background-color: #696969;
+    width: 100%;
+    height: 60px;
+    z-index: 1;
+    text-align: center;
 }
-.wrap * {
-    padding: 0;
-    margin: 0;
-}
-.wrap .info {
-    width: 286px;
-    height: 120px;
-    border-radius: 5px;
-    border-bottom: 2px solid #ccc;
-    border-right: 1px solid #ccc;
-    overflow: hidden;
-    background: #fff;
-}
-.wrap .info:nth-child(1) {
-    border: 0;
-    box-shadow: 0px 1px 2px #888;
-}
-.info .title {
-    padding: 5px 0 0 10px;
-    height: 30px;
-    background: #eee;
-    border-bottom: 1px solid #ddd;
-    font-size: 18px;
+.title {
+    color: #fff;
+    margin-top: 15px;
+    margin-left: 10px;
+    font-size: 20px;
     font-weight: bold;
 }
-.info .close {
+.nav {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #888;
-    width: 17px;
-    height: 17px;
-    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+    top: 20px;
+    left: 20px;
 }
-.info .close:hover {
+#menuToggle {
+    display: block;
+    position: relative;
+    z-index: 2;
+
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#menuToggle a {
+    text-decoration: none;
+    color: #232323;
+
+    transition: color 0.3s ease;
+}
+
+#menuToggle a:hover {
+    color: tomato;
+}
+
+#menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+
     cursor: pointer;
+
+    opacity: 0; /* hide this */
+    z-index: 2; /* and place it over the hamburger */
+
+    -webkit-touch-callout: none;
 }
-.info .body {
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
     position: relative;
-    overflow: hidden;
+    background: #5ce1e6;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 }
-.info .desc {
-    position: relative;
-    margin: 13px 0 0 90px;
-    height: 75px;
+
+#menuToggle span:first-child {
+    transform-origin: 0% 0%;
 }
-.desc .ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+#menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
 }
-.desc .jibun {
-    font-size: 11px;
-    color: #888;
-    margin-top: -2px;
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
 }
-.info .img {
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu {
     position: absolute;
-    top: 6px;
-    left: 5px;
-    width: 73px;
-    height: 71px;
-    border: 1px solid #ddd;
-    color: #888;
-    overflow: hidden;
+    width: 200px;
+    height: 100vh;
+    margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 125px;
+
+    background: #ededed;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
-.info:after {
-    content: '';
-    position: absolute;
-    margin-left: -12px;
-    left: 50%;
-    bottom: 0;
-    width: 22px;
-    height: 12px;
-    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
+
+#menu li {
+    padding: 10px 0;
+    font-size: 22px;
 }
-.info .link {
-    color: #5085bb;
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul {
+    transform: none;
 }
