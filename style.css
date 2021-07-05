@@ -149,8 +149,14 @@ body {
 #menuToggle input:checked ~ ul {
     transform: none;
 }
+.container_btn_start{
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 45vh;
+}
 .btn_start {
-    text-align: center;
+    margin: auto;
     color: #fff;
     background-color: #696969;
     width: 100px;
@@ -159,8 +165,8 @@ body {
 }
 .btn_start span {
     font-size: 20px;
-    position: absolute;
-    margin-top: 15px;
+    position: relative;
+    top: 15px;
     left: 16px;
 }
 .img_family {

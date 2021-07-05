@@ -37,7 +37,7 @@
                 17년 만의 제주도여행 😆
             </div>
         </div>
-        <img class="img_family" src="image/family.png">
+        <img class="img_family" src="image/family.png" />
         <nav class="nav" role="navigation">
             <div id="menuToggle">
                 <!--
@@ -79,6 +79,11 @@
                 </ul>
             </div>
         </nav>
+        <div class="container_btn_start">
+            <div class="btn_start">
+                <span>GO! GO!</span>
+            </div>
+        </div>
         <script>
             var mapContainer = document.getElementById('map'), // 지도의 중심좌표
                 mapOption = {
@@ -89,10 +94,7 @@
             var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
         </script>
         <script>
-            var content =
-                '<div class="btn_start">' +
-                ' <span>Go! GO! </span>' +
-                ' </div>';
+            var content = '';
 
             var position = new kakao.maps.LatLng(33.37702294346986, 126.53592674725587);
 
