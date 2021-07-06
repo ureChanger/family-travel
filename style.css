@@ -217,10 +217,21 @@ body {
 .info .title {
     padding: 0 5px;
     height: 30px;
-    background: #ff4b4b;
     border-bottom: 1px solid #ddd;
     font-size: 18px;
     font-weight: bold;
+}
+.home{
+    background: #ff4b4b;
+}
+.first{
+    background: #be00f3;
+}
+.second{
+    background: #03c357;
+}
+.third{
+    background: #0098f3;
 }
 .info .close {
     position: absolute;

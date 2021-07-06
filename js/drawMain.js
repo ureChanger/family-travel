@@ -16,7 +16,7 @@ marker.setMap(map);
 var content =
     '<div class="wrap" onclick="zoomHome()">' +
     '    <div class="info">' +
-    '        <div class="title">' +
+    '        <div class="title home">' +
     '            터치해주세요!' +
     '        </div>' +
     '        <div class="body">' +
@@ -85,6 +85,20 @@ const markers_first = drawFirstDay();
 const markers_second = drawSecondDay();
 const markers_third = drawThirdDay();
 
+var positions = [[], [], []];
+var markers_total = [markers_first, markers_second, markers_third];
+
+for (var i = 0; i < markers_total.length; i++) {
+    for (var j = 0; j < markers_total[i][0].length; j++) {
+        positions[i].push(markers_total[i][0][j].getPosition());
+    }
+}
+console.log(positions[0]);
+
+const path_first = drawLine(positions[0]);
+const path_second = drawLine(positions[1]);
+const path_third = drawLine(positions[2]);
+
 $('#menu_1').attr('onclick', 'showMarkers(1);');
 $('#togo_1').attr('onclick', 'showMarkers(2);');
 $('#togo_2').attr('onclick', 'showMarkers(3);');
@@ -96,16 +110,71 @@ function showMarkers(idx) {
     hideMarkers(idx);
     const markers = setStack_show(idx);
     for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
+        for (var j = 0; j < markers[i].length; j++) {
+            markers[i][j].setMap(map);
+        }
+    }
+    switch (idx) {
+        case 1:
+            break;
+        case 2:
+            map.setLevel(6);
+            path_first.setMap(map);
+            break;
+        case 3:
+            map.setLevel(1);
+            path_second.setMap(map);
+            break;
+        case 4:
+            map.setLevel(4);
+            path_third.setMap(map);
+            break;
+    }
+
+    if (idx != 1) {
+        var firstMarkerPosition = markers[0][0].getPosition();
+        var moveLatLon = new kakao.maps.LatLng(
+            firstMarkerPosition.getLat(),
+            firstMarkerPosition.getLng()
+        );
+
+        // 지도 중심을 부드럽게 이동시킵니다
+        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+        map.panTo(moveLatLon);
+    } else {
+        var moveLatLon = new kakao.maps.LatLng(33.39889736609703, 126.24597169811791);
+
+        // 지도 중심을 부드럽게 이동시킵니다
+        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+        map.panTo(moveLatLon);
     }
 }
 
 // "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
 function hideMarkers(idx) {
     const markers = setStack_hide(idx);
+    var path_hide = [];
+    switch(idx){
+        case 1:
+            break;
+        case 2:
+            path_hide = [path_second, path_third];
+            break;
+        case 3:
+            path_hide = [path_first, path_third];
+            break;
+        case 4:
+            path_hide = [path_first, path_second];
+            break;
+    }
+    for (var i = 0; i < path_hide.length; i++){
+        path_hide[i].setMap(null);
+    }
     for (var i = 0; i < markers.length; i++) {
         for (var j = 0; j < markers[i].length; j++) {
-            markers[i][j].setMap(null);
+            for (var k = 0; k < markers[i][j].length; k++) {
+                markers[i][j][k].setMap(null);
+            }
         }
     }
 }
@@ -115,13 +184,13 @@ function setStack_hide(idx) {
         const stack_1 = [];
         return stack_1;
     } else if (idx == 2) {
-        const stack_2 = [markers_home, markers_second, markers_third];
+        const stack_2 = [[markers_home], markers_second, markers_third];
         return stack_2;
     } else if (idx == 3) {
-        const stack_3 = [markers_home, markers_first, markers_third];
+        const stack_3 = [[markers_home], markers_first, markers_third];
         return stack_3;
     } else if (idx == 4) {
-        const stack_4 = [markers_home, markers_first, markers_second];
+        const stack_4 = [[markers_home], markers_first, markers_second];
         return stack_4;
     }
 }
@@ -140,4 +209,22 @@ function setStack_show(idx) {
         const stack_4 = markers_third;
         return stack_4;
     }
+}
+
+function drawLine(positions) {
+    var linePath = [];
+    for (var i = 0; i < positions.length; i++) {
+        linePath.push(positions[i]);
+    }
+
+    // 지도에 표시할 선을 생성합니다
+    var polyline = new kakao.maps.Polyline({
+        path: linePath, // 선을 구성하는 좌표배열 입니다
+        strokeWeight: 5, // 선의 두께 입니다
+        strokeColor: '#FFAE00', // 선의 색깔입니다
+        strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+        strokeStyle: 'solid', // 선의 스타일입니다
+    });
+
+    return polyline;
 }
