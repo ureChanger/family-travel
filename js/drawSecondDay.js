@@ -23,7 +23,7 @@ function drawSecondDay() {
 
     var content_info = [
         {
-            title: '1. 바다해찬 (둘째 날)',
+            title: '1. 바다해찬-해물뚝배기(둘째 날)',
             img: 'image/2-1.jpg',
             info: '아빠가 노래를 부름',
             address: '한림읍 한림해안로 326',
