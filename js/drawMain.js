@@ -80,7 +80,7 @@ function setMarkers(map, markers) {
     }
 }
 
-const markers_home = [marker, customOverlay];
+const markers_home = [customOverlay];
 const markers_first = drawFirstDay();
 const markers_second = drawSecondDay();
 const markers_third = drawThirdDay();
@@ -126,7 +126,7 @@ function showMarkers(idx) {
             path_second.setMap(map);
             break;
         case 4:
-            map.setLevel(4);
+            map.setLevel(10);
             path_third.setMap(map);
             break;
     }

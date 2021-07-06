@@ -1,7 +1,7 @@
 function drawFirstDay() {
     const markers = [];
 
-    // 제주항공, 제주마당, 쇠소깍카약, 국수바다, 다퍼주는횟집
+    // 제주항공, 제주마당, 쇠소깍카약, 국수바다, 협재횟집
     var positions = [
         [33.50906428878105, 126.49313556374678],
         [33.49818478438646, 126.45817699013881],
@@ -25,31 +25,31 @@ function drawFirstDay() {
     var content_info = [
         {
             title: '1. 제주공항 (첫째 날)',
-            img: 'image/house.svg',
+            img: 'image/1-1.jpg',
             info: '오전 10시 도착',
             address: '제주시 공항로 2',
         },
         {
             title: '2. 제주마당',
-            img: 'image/house.svg',
+            img: 'image/1-2.jpg',
             info: '아침 - 갈치조림',
             address: '제주시 이호일동 663-1',
         },
         {
             title: '3. 쇠소깍 카약',
-            img: 'image/house.svg',
+            img: 'image/1-3.jpg',
             info: '오후 - 액티비티',
             address: '서귀포시 하효동 994-1',
         },
         {
             title: '4. 국수바다',
-            img: 'image/house.svg',
+            img: 'image/1-4.jpg',
             info: '점심 - 고기국수',
             address: '서귀포시 색달동 2130',
         },
         {
-            title: '5. 다퍼주는횟집 포장',
-            img: 'image/house.svg',
+            title: '5. 협재횟집 포장',
+            img: 'image/1-5.jpg',
             info: '저녁 - 회&딱새우',
             address: '제주시 조천읍 함와로 22',
         },

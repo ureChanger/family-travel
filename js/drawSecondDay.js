@@ -24,25 +24,25 @@ function drawSecondDay() {
     var content_info = [
         {
             title: '1. 바다해찬 (둘째 날)',
-            img: 'image/house.svg',
+            img: 'image/2-1.jpg',
             info: '아빠가 노래를 부름',
             address: '한림읍 한림해안로 326',
         },
         {
             title: '2. 협재해수욕장',
-            img: 'image/house.svg',
+            img: 'image/2-2.jpg',
             info: '점심 - 2년만의 수영',
             address: '제주시 한림읍',
         },
         {
             title: '3. 흑돼지바베큐',
-            img: 'image/house.svg',
+            img: 'image/2-3.jpg',
             info: '비 안올때 - 집',
             address: '협재 숙소',
         },
         {
             title: '4. 협재돼지굽는정원',
-            img: 'image/house.svg',
+            img: 'image/2-4.jpg',
             info: '비 올 때 - 흑돼지',
             address: '한림읍 협재2길 8',
         },

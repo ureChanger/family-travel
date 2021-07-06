@@ -23,19 +23,19 @@ function drawThirdDay() {
     var content_info = [
         {
             title: '1. 협재칼국수 (셋째 날)',
-            img: 'image/house.svg',
+            img: 'image/3-1.jpg',
             info: '시원~한 국물로 시작',
             address: '한림읍 협재로 3',
         },
         {
             title: '2. 레일바이크',
-            img: 'image/house.svg',
+            img: 'image/3-2.jpg',
             info: '박상의 PICK! ⭐',
             address: '제주시 구좌읍 종달리 4639',
         },
         {
             title: '3. 제주공항근처 점심',
-            img: 'image/house.svg',
+            img: 'image/3-3.jpg',
             info: '상황봐서 결정',
             address: '제주시 공항로 2',
         },
